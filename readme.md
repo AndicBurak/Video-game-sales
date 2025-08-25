@@ -1,7 +1,8 @@
 # Video Game Sales – ML Project
 
 > This project analyzes global sales of physical video game copies and builds machine learning models to predict whether a game becomes a success (>1 million sold).  
-> Through EDA and classification models (Random Forest, XGBoost), I show how class imbalance affects performance and improve predictions by rebalancing and threshold tuning.
+> Through EDA and classification models (Random Forest, XGBoost), I show how class imbalance affects performance and improve predictions by rebalancing and threshold tuning.  
+> I also used feature importance analysis to identify which factors matter most for predicting success.
 
 ## Why physical copies?
 The dataset only includes physical retail sales. Digital distribution (Steam/PS Store/Xbox/eShop/mobile) is **not** included.  
@@ -23,14 +24,17 @@ I tested two models:
 - **XGBoost**
 
 Both models achieved high overall accuracy (~86–89%), but weaker F1-score for the **Success class (1)** (~0.37).  
-This shows the challenge of **imbalanced data** (far fewer successes than non-successes), rather than the choice of model.
+This shows the challenge of **imbalanced data** (far fewer successes than non-successes), rather than the choice of model.  
 
-## Conclusion
-- Accuracy looks high but is misleading due to class imbalance.  
-- Both models are much better at predicting non-successes than successes.  
-- When I balanced the data with class weights and tuned the threshold, the model’s ability to detect successes improved.  
-  F1 for the success class increased from 0.37 to 0.49. This shows the model now captures significantly more successes, even though it sometimes misclassifies.  
-- The decline in overall sales is most likely due to the shift toward **digital distribution and subscription models**, not a drop in gaming popularity.
+When I balanced the data with class weights and tuned the threshold, the model’s ability to detect successes improved.  
+F1 for the success class increased from **0.37 → 0.49**, showing that the model now captures more successes, even if it sometimes misclassifies.
+
+## Feature importance
+Using the XGBoost model, I analyzed which features were most important:  
+- **Year of Release** and **Genre** were the most decisive predictors of success.  
+- **Platform** and **Publisher** had less influence.  
+
+This makes sense since some time periods and genres historically had a much higher chance of producing best-sellers.
 
 ## Model comparison
 
@@ -40,10 +44,17 @@ This shows the challenge of **imbalanced data** (far fewer successes than non-su
 | XGBoost (default, thr=0.5) | 0.89     | 0.58                | 0.27             | 0.37         |
 | XGBoost (bal + thr=0.66)   | 0.85     | 0.41                | 0.61             | 0.49         |
 
+## Conclusion
+- Accuracy looks good but is misleading due to imbalance.  
+- Success prediction improved when using class weights + threshold tuning.  
+- Feature importance shows that release year and genre are the strongest signals for predicting success.  
+- The decline in overall physical sales is explained by the shift toward **digital distribution and subscription models**, not a drop in gaming popularity.
+
 ## Future work
 - Include **digital** sales or balance the dataset (e.g. class weights/SMOTE).  
 - Try additional models and threshold tuning for better recall on successes.  
-- Add a simple app (e.g. Streamlit) to make predictions interactive.
+- Add a simple app (e.g. Streamlit) to make predictions interactive.  
+- Use feature importance insights to investigate which genres/years could be “hidden gems”.
 
 ## Reproduce
 ```bash
