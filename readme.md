@@ -1,4 +1,3 @@
-cat > README.md << "EOF"
 # Video Game Sales – ML-projekt
 
 I det här projektet analyserar jag global försäljning av **fysiska spelkopior** och tränar modeller för att förutsäga om ett spel blir en succé (> 1 miljon sålda). Fokus är på en enkel, tydlig process med minimalt med kod.
