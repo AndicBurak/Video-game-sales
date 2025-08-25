@@ -1,0 +1,24 @@
+# Python cache
+__pycache__/
+*.py[cod]
+*.pyo
+*.pyd
+
+# Jupyter notebook checkpoints
+.ipynb_checkpoints/
+
+# Virtuella miljöer
+.venv/
+venv/
+env/
+
+# OS filer
+.DS_Store
+Thumbs.db
+
+# PyCharm / VSCode settings
+.vscode/
+.idea/
+
+
+
